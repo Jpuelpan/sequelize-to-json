@@ -308,7 +308,8 @@ class Serializer {
     for(let a of this._attrList) {
       // if the attribute name is dot-prefixed, always treat it as a regular attribute of the model instance
       if(a[0] !== '.' && this._attr.all.indexOf(a) > -1) {
-        value = inst.get(a);
+        var getterOptions = this._options.getterOptions || {};
+        value = inst.get(a, getterOptions);
       } else {
         if(a[0] === '.') a = a.substr(1);
           
